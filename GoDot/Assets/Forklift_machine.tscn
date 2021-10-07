@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.499272, 0.571206, 1.01663 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1, 1, 2 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 1, 0.862745, 0.12549, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.8, 1, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 0.788235, 0.423529, 0.0352941, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+
+[sub_resource type="CylinderMesh" id=5]
+material = SubResource( 4 )
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+radial_segments = 59
+rings = 1
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.486275, 0.168627, 0.0313726, 1 )
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0.486275, 0.168627, 0.0313726, 1 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.486275, 0.168627, 0.0313726, 1 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.486275, 0.168627, 0.0313726, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 1, 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[node name="Forklift machine" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71487, 0 )
+
+[node name="VehicleBody" type="VehicleBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81325, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="VehicleBody"]
+shape = SubResource( 1 )
+
+[node name="Body_of_Fork" type="MeshInstance" parent="VehicleBody"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 11 )
+
+[node name="Chair" type="MeshInstance" parent="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0228279, 0.773226, -0.38882 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 12 )
+
+[node name="Back_Left" type="VehicleWheel" parent="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.371042, -0.682007, -0.725147 )
+wheel_radius = 0.2
+
+[node name="CSGMesh" type="MeshInstance" parent="VehicleBody/Back_Left"]
+transform = Transform( -0.0695766, 0.997489, -0.0132103, -0.997402, -0.0693105, 0.0196374, 0.0186725, 0.0145423, 0.99972, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 13 )
+
+[node name="Back_Right" type="VehicleWheel" parent="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.404846, -0.661193, -0.725147 )
+wheel_radius = 0.2
+
+[node name="CSGMesh" type="MeshInstance" parent="VehicleBody/Back_Right"]
+transform = Transform( -0.0695766, 0.997489, -0.0132103, -0.997402, -0.0693105, 0.0196374, 0.0186725, 0.0145423, 0.99972, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 14 )
+
+[node name="Front_Left" type="VehicleWheel" parent="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.371042, -0.654746, 0.740683 )
+wheel_radius = 0.2
+
+[node name="CSGMesh" type="MeshInstance" parent="VehicleBody/Front_Left"]
+transform = Transform( -0.0695766, 0.997489, -0.0132103, -0.997402, -0.0693105, 0.0196374, 0.0186725, 0.0145423, 0.99972, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 15 )
+
+[node name="Front_Right" type="VehicleWheel" parent="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.404846, -0.652068, 0.75332 )
+wheel_radius = 0.2
+
+[node name="CSGMesh" type="MeshInstance" parent="VehicleBody/Front_Right"]
+transform = Transform( -0.0695766, 0.997489, -0.0132103, -0.997402, -0.0693105, 0.0196374, 0.0186725, 0.0145423, 0.99972, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 16 )
+
+[node name="Front_Left_Fork" type="MeshInstance" parent="VehicleBody"]
+transform = Transform( 0.0211692, 0, -0.999776, 0, 1, 0, 0.999776, 0, 0.0211692, 0.384022, -0.141518, 1.36818 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 10 )
+
+[node name="Front_Right_Fork" type="MeshInstance" parent="VehicleBody"]
+transform = Transform( 0.0211692, 0, -0.999776, 0, 1, 0, 0.999776, 0, 0.0211692, -0.319563, -0.136788, 1.36818 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 17 )
