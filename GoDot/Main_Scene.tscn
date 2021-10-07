@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Worker.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Worker.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Forklift_machine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/CAm.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.462331, 0.481588, 0.503387 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.317647, 0.341176, 0.905882, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 24.908, 0.868932, 24.9699 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 50, 1, 50 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.231373, 0.00784314, 0.00784314, 1 )
+
+[sub_resource type="BoxShape" id=7]
+
+[sub_resource type="CubeMesh" id=8]
+
+[node name="Main_Scene" type="Spatial"]
+
+[node name="Box" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61062, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Box"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 6 )
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611593, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288458, 0.378502, 0.0472403 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Worker" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56107, 18.9638 )
+script = ExtResource( 2 )
+
+[node name="CAm" type="Spatial" parent="Worker"]
+script = ExtResource( 4 )
+
+[node name="H" type="Spatial" parent="Worker/CAm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.698588, 1.12022 )
+
+[node name="V" type="Spatial" parent="Worker/CAm/H"]
+
+[node name="Camera" type="ClippedCamera" parent="Worker/CAm/H/V"]
+transform = Transform( 0.996258, 0.0426977, -0.0751478, -0.04115, 0.99891, 0.022025, 0.0760064, -0.0188503, 0.996929, 0, 1.73947, 0.694393 )
+visible = false
+fov = 90.0
+
+[node name="Forklift machine" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.877573, 0, 0.479443, 0, 1, 0, -0.479443, 0, -0.877573, -20.7199, 0.597908, 22.5173 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.0271191, 0.999632, 0, -0.999632, 0.0271191, -0.0336328, 19.9797, 0.573722 )
+spot_range = 32.0372
+
+[node name="Walls_for _Game" type="Spatial" parent="."]
+
+[node name="Wall1" type="StaticBody" parent="Walls_for _Game"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls_for _Game/Wall1"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, -0.141175, 5.54209, 25.5342 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls_for _Game/Wall1"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, 0, 5.64585, 25.4108 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Wall2" type="StaticBody" parent="Walls_for _Game"]
+transform = Transform( 0.00776668, 0, -0.99997, 0, 1, 0, 0.99997, 0, 0.00776668, 0.328145, -3.75247, 1.15371 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls_for _Game/Wall2"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, -0.141175, 5.54209, 25.5342 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls_for _Game/Wall2"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, 0, 5.64585, 25.4108 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Wall3" type="StaticBody" parent="Walls_for _Game"]
+transform = Transform( -0.999987, 0, 0.00516616, 0, 1, 0, -0.00516616, 0, -0.999987, 0.328145, -3.75247, 1.15371 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls_for _Game/Wall3"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, -0.141175, 5.54209, 25.5342 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls_for _Game/Wall3"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, 0, 5.64585, 25.4108 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Wall4" type="StaticBody" parent="Walls_for _Game"]
+transform = Transform( 0.0176793, 0, 0.999844, 0, 1, 0, -0.999844, 0, 0.0176793, 0.213504, -3.75247, 1.15371 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls_for _Game/Wall4"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, -0.141175, 5.54209, 25.5342 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls_for _Game/Wall4"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, 0, 5.64585, 25.4108 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Wall5" type="StaticBody" parent="Walls_for _Game"]
+transform = Transform( 0.0453628, -0.998941, -0.00764869, -0.0436529, -0.00963149, 0.999, -0.998016, -0.0449836, -0.0440436, 0.213504, -3.75247, 1.15371 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls_for _Game/Wall5"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, -0.141175, 5.54209, 25.5342 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls_for _Game/Wall5"]
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, 0, 5.64585, 25.4108 )
+mesh = SubResource( 8 )
+material/0 = null
