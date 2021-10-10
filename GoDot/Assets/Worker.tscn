@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.739761, 1.36439, 1 )
+extents = Vector3( 0.739761, 1.49104, 1 )
 
 [sub_resource type="CapsuleMesh" id=2]
 
 [node name="Worker" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.908997, 0 )
+transform = Transform( 0.2705, 0, 0, 0, 0.418199, 0, 0, 0, 0.280206, 0, 0.908997, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="Body" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

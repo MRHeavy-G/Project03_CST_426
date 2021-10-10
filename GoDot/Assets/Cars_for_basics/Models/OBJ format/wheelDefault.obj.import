@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/wheelDefault.obj-32f42af26ecf6e8850452e7b5f3ff560.mesh"
+
+[deps]
+
+files=[ "res://.import/wheelDefault.obj-32f42af26ecf6e8850452e7b5f3ff560.mesh" ]
+
+source_file="res://Assets/Cars_for_basics/Models/OBJ format/wheelDefault.obj"
+dest_files=[ "res://.import/wheelDefault.obj-32f42af26ecf6e8850452e7b5f3ff560.mesh", "res://.import/wheelDefault.obj-32f42af26ecf6e8850452e7b5f3ff560.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
