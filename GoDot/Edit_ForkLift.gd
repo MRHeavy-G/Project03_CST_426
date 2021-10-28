@@ -6,10 +6,11 @@ var car_zone = false
 
 var body_CE = false
 
+var Object_Ineraction = false
+
+
+#movement for the forklift
 func get_input():
-	
-	
-	
 	
 	if active == true:
 		$Camera.make_current()
@@ -34,6 +35,21 @@ func get_input():
 		entering_car()
 		pass
 		
+
+#object inveractions once on the main floor
+#------------------------------------------
+func _pick_up_objects(body):
+	if Input.is_action_just_pressed("ui_q") && Object_Ineraction == true:
+		print("testing pick_up")
+		pass
+	
+	pass
+
+
+
+
+#entering and leaving the forklift commands
+#-----------------------------------------------------
 
 func entering_car():
 	if Input.is_action_just_pressed("ui_e") && car_zone == true:
@@ -75,3 +91,10 @@ func _on_Player_Interaction_body_exited(body):
 func _on_Exit_Car_Zone_body_entered(body):
 	if body.name == "Edit_ForkLift":
 		body_CE = true
+
+
+func _on_Box1_Pick_Up_Area_body_entered(body):
+	if body.name == "Edit_Forklift":
+		Object_Ineraction = true
+	print("testing pick_up")
+	pass # Replace with function body.
