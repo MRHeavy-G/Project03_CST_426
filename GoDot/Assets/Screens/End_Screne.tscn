@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Images/Intro_Page.png" type="Texture" id=1]
+[ext_resource path="res://User_Interface/PlayB.gd" type="Script" id=2]
+[ext_resource path="res://User_Interface/QuitB.gd" type="Script" id=3]
+[ext_resource path="res://User_Interface/PlayB.tscn" type="PackedScene" id=4]
+[ext_resource path="res://User_Interface/QuitB.tscn" type="PackedScene" id=5]
+
+[node name="End_Screne" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Intro_Page" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.074
+margin_top = 176.711
+margin_right = 71.9261
+margin_bottom = 255.711
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayB" type="Button" parent="VBoxContainer" instance=ExtResource( 4 )]
+margin_right = 197.0
+margin_bottom = 37.0
+size_flags_vertical = 3
+text = "Play Again"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+next_scene_path = "res://Assets/Screens/Intro_PAge.tscn"
+
+[node name="QuitB" type="Button" parent="VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 41.0
+margin_right = 197.0
+margin_bottom = 79.0
+size_flags_vertical = 3
+text = "Quit"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End_Prompt" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -248.11
+margin_top = -114.15
+margin_right = 7.89008
+margin_bottom = -7.14954
+rect_scale = Vector2( 2, 2 )
+text = "The Game Has Ended: 
+  Score is: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End_Score" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.8511
+margin_top = -40.013
+margin_right = 114.149
+margin_bottom = 108.987
+rect_scale = Vector2( 4, 4 )
+text = "%s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="VBoxContainer/PlayB" to="VBoxContainer/PlayB" method="_on_PlayB_button_up"]
+[connection signal="button_up" from="VBoxContainer/QuitB" to="VBoxContainer/QuitB" method="_on_QuitB_button_up"]

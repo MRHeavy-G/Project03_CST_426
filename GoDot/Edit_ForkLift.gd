@@ -1,12 +1,19 @@
 extends "res://Scripts/Auto_Mobil_Basic.gd"
 
+#addes the accesablity for the forklift and the exit status
 var active = false
 
 var car_zone = false
 
 var body_CE = false
 
-var Object_Ineraction = false
+#tells the player if the box can be picked up or not
+var object_Ineraction = false
+
+# these variables will add the options to pick up the containers in the game 
+var score_Zone = false
+
+var container_picked_up = false
 
 
 #movement for the forklift
@@ -26,10 +33,16 @@ func get_input():
 		if Input.is_action_pressed("brake"):
 			acc = -transform.basis.z * braking
 			
-		if Input.is_key_pressed(KEY_ESCAPE):
-			get_tree().quit()
+		#if Input.is_key_pressed(KEY_ESCAPE):
+		#	get_tree().quit()
 		
 		leaving_car()
+		
+		
+		#this call will be to pcik up the objects 
+		if(object_Ineraction  == true):
+			pick_up_objects()
+		
 		
 	elif active == false:
 		entering_car()
@@ -38,12 +51,18 @@ func get_input():
 
 #object inveractions once on the main floor
 #------------------------------------------
-func _pick_up_objects(body):
-	if Input.is_action_just_pressed("ui_q") && Object_Ineraction == true:
-		print("testing pick_up")
-		pass
+func pick_up_objects():
+	if Input.is_action_just_pressed("ui_q") == true:
+		# if we know that the key was pressed we can safely say that the container was picked up
+		container_picked_up = true
+		print("ACtion_Q")
+	elif Input.is_action_just_pressed("ui_q") == true && object_Ineraction == true:
+		print("Point added")
+		#this will depend on what container the forklift has
+		PlayerData.score +=1
+		
 	
-	pass
+	
 
 
 
@@ -94,7 +113,16 @@ func _on_Exit_Car_Zone_body_entered(body):
 
 
 func _on_Box1_Pick_Up_Area_body_entered(body):
-	if body.name == "Edit_Forklift":
-		Object_Ineraction = true
-	print("testing pick_up")
+	if body.name == "Edit_ForkLift":
+		object_Ineraction = true
+		print("IN_AREA_BOX")
+	
+	
+
+
+func _on_Drop_off_section_for_points_body_entered(body):
+	# in here we will check to see if the forklift is in the area to gather point with a box on the forks
+	if body.name == "Edit_ForkLift":
+		score_Zone = true
+		
 	pass # Replace with function body.
