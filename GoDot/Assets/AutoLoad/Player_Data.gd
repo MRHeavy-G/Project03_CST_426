@@ -20,7 +20,7 @@ func _ready():
 
 func set_score(value: int ) -> void:
 	score = value
-	emit_signal("Scored_updated")
+	emit_signal("score_updated")
 	
 #func set_time(t: double)->void:
 #	time = t

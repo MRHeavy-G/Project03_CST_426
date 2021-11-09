@@ -46,18 +46,30 @@ func get_input():
 		
 	elif active == false:
 		entering_car()
-		pass
+		
 		
 
 #object inveractions once on the main floor
 #------------------------------------------
 func pick_up_objects():
+	# to get the mesh for the box
+	var vehcile = $"."
+	var container1 = get_parent().get_node("Box")
+	var newContainerLoc = vehcile.global_transform.origin
+	
 	if Input.is_action_just_pressed("ui_q") == true:
 		# if we know that the key was pressed we can safely say that the container was picked up
 		container_picked_up = true
+		newContainerLoc = newContainerLoc +  -vehcile.global_transform.basis.z
+		
+		container1.global_transform.origin = newContainerLoc
+		
+		
+		
 		print("ACtion_Q")
 	elif Input.is_action_just_pressed("ui_q") == true && object_Ineraction == true:
 		print("Point added")
+		
 		#this will depend on what container the forklift has
 		PlayerData.score +=1
 		
@@ -81,12 +93,20 @@ func entering_car():
 func leaving_car():
 	var vehicle = $"."
 	var hide_player = get_parent().get_node("Worker")
-	var newLoc = vehicle.global_transform.origin - 2*vehicle.global_transform.basis.x 
+	var newLoc = vehicle.global_transform.origin 
+	#print(vehicle.global_transform.origin)
+	#newLoc =  newLoc + 25*vehicle.global_transform.basis.x 
+	#newLoc =  newLoc - 15*vehicle.global_transform.basis.z 
+	newLoc = newLoc + 5 *vehicle.global_transform.basis.y
+	#print(newLoc, "New")
 	
 	if car_zone ==  false && Input.is_action_just_pressed("ui_e") && body_CE == true:
-		hide_player.active = true
+		
 		active = false
+		
+		hide_player.active = true
 		hide_player.global_transform.origin = newLoc
+		
 
 
 func _on_Player_Interaction_body_entered(body):

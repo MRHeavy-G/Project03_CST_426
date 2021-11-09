@@ -56,4 +56,6 @@ func movement():
 
 
 func _on_Exit_Car_Zone_body_exited(body):
-	pass # Replace with function body.
+	$CollisionShape.disabled = false
+	
+	
