@@ -57,21 +57,32 @@ func pick_up_objects():
 	var container1 = get_parent().get_node("Box")
 	var newContainerLoc = vehcile.global_transform.origin
 	
-	if Input.is_action_just_pressed("ui_q") == true:
+	
+	if Input.is_action_just_pressed("ui_q") == true && object_Ineraction == true:
 		# if we know that the key was pressed we can safely say that the container was picked up
 		container_picked_up = true
-		newContainerLoc = newContainerLoc +  -vehcile.global_transform.basis.z
+		newContainerLoc = newContainerLoc +  2.5 *-vehcile.global_transform.basis.z
+		
+		
 		
 		container1.global_transform.origin = newContainerLoc
+		#vehcile.add_child(container1)
+		#container1.set_physics_process(false)
+		#container1.global_transform.origin = vehcile.global_transform.origin
 		
 		
 		
 		print("ACtion_Q")
-	elif Input.is_action_just_pressed("ui_q") == true && object_Ineraction == true:
+		
+		
+	if Input.is_action_just_pressed("ui_q") == true && score_Zone == true :
+		var userInterface = get_parent().get_node("UserInterface/UserInterface")
 		print("Point added")
 		
 		#this will depend on what container the forklift has
 		PlayerData.score +=1
+		userInterface.updated_interface()
+		
 		
 	
 	
@@ -107,26 +118,16 @@ func leaving_car():
 		hide_player.active = true
 		hide_player.global_transform.origin = newLoc
 		
-
-
 func _on_Player_Interaction_body_entered(body):
 	if body.name == "Worker":
 		car_zone = true
-		
-
 func _on_Exit_Car_Zone_body_exited(body):
 	if body.name == "Edit_ForkLift":
 		body_CE = false
 		print("can_if")
-
-
 func _on_Player_Interaction_body_exited(body):
 	if body.name == "Worker":
 		car_zone = false
-		
-
-
-
 func _on_Exit_Car_Zone_body_entered(body):
 	if body.name == "Edit_ForkLift":
 		body_CE = true
@@ -135,14 +136,24 @@ func _on_Exit_Car_Zone_body_entered(body):
 func _on_Box1_Pick_Up_Area_body_entered(body):
 	if body.name == "Edit_ForkLift":
 		object_Ineraction = true
-		print("IN_AREA_BOX")
+	
+		
 	
 	
-
+func _on_Box1_Pick_Up_Area_body_exited(body):
+	#object_Ineraction = false
+	pass
 
 func _on_Drop_off_section_for_points_body_entered(body):
 	# in here we will check to see if the forklift is in the area to gather point with a box on the forks
 	if body.name == "Edit_ForkLift":
-		score_Zone = true
 		
-	pass # Replace with function body.
+		score_Zone = true
+	else:
+		score_Zone = false
+		
+		
+	
+
+
+
