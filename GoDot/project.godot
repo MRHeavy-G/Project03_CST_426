@@ -14,6 +14,17 @@ config/name="Project03"
 run/main_scene="res://Main_Scene.tscn"
 config/icon="res://icon.png"
 
+<<<<<<< Updated upstream
+=======
+[autoload]
+
+PlayerData="*res://Assets/AutoLoad/Player_Data.tscn"
+
+[display]
+
+window/size/borderless=true
+
+>>>>>>> Stashed changes
 [input]
 
 steer_left={
