@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Scripts/New_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Intro_Sign.tscn" type="PackedScene" id=2]
@@ -8,18 +8,7 @@
 [ext_resource path="res://Images/istockphoto-1258849375-170667a.jpg" type="Texture" id=6]
 [ext_resource path="res://User_Interface/UserInterface.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Box_Interaction.gd" type="Script" id=8]
-
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.462331, 0.481588, 0.503387 )
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 1, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.317647, 0.341176, 0.905882, 1 )
-
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 0.499992, 0.563433, 0.660737 )
+[ext_resource path="res://Assets/Container_Box.tscn" type="PackedScene" id=9]
 
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 1.62208, 1.7674, 1.55011 )
@@ -94,6 +83,17 @@ extents = Vector3( 11.8497, 1.1727, 7.21174 )
 [sub_resource type="SpatialMaterial" id=28]
 albedo_color = Color( 0, 0, 0, 1 )
 
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.462331, 0.481588, 0.503387 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=29]
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.499992, 0.563433, 0.660737 )
+
 [node name="Main_Scene" type="Spatial"]
 script = ExtResource( 5 )
 
@@ -101,24 +101,6 @@ script = ExtResource( 5 )
 layer = 100
 
 [node name="UserInterface" parent="UserInterface" instance=ExtResource( 7 )]
-
-[node name="Box" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4851, 0.876966, -20.6524 )
-script = ExtResource( 8 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Box"]
-shape = SubResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Box"]
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
-
-[node name="Box1_Pick_Up_Area" type="Area" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0938339, -0.345625, 1.76097 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Box/Box1_Pick_Up_Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511494, -0.435501 )
-shape = SubResource( 4 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.0271191, 0.999632, 0, -0.999632, 0.0271191, -0.0336328, 19.9797, 0.573722 )
@@ -305,11 +287,38 @@ shape = SubResource( 26 )
 mesh = SubResource( 27 )
 material/0 = SubResource( 28 )
 
-[connection signal="body_entered" from="Box/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_entered"]
-[connection signal="body_exited" from="Box/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_exited"]
+[node name="Container_Space" type="Node" parent="."]
+
+[node name="Container3" parent="Container_Space" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1053, 0, -21.6377 )
+
+[node name="Container2" parent="Container_Space" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57667, 0, -22.2508 )
+
+[node name="Container1" type="RigidBody" parent="Container_Space"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4851, 0.876966, -20.6524 )
+script = ExtResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container1"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Container_Space/Container1"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 29 )
+
+[node name="Box1_Pick_Up_Area" type="Area" parent="Container_Space/Container1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0938339, -0.345625, 1.76097 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container1/Box1_Pick_Up_Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511494, -0.435501 )
+shape = SubResource( 4 )
+
 [connection signal="body_entered" from="Edit_ForkLift/Player_Interaction" to="Edit_ForkLift" method="_on_Player_Interaction_body_entered"]
 [connection signal="body_exited" from="Edit_ForkLift/Player_Interaction" to="Edit_ForkLift" method="_on_Player_Interaction_body_exited"]
 [connection signal="body_entered" from="Areas_For_Interaction/Drop_off_section_for_points" to="Edit_ForkLift" method="_on_Drop_off_section_for_points_body_entered"]
+[connection signal="body_exited" from="Areas_For_Interaction/Drop_off_section_for_points" to="Edit_ForkLift" method="_on_Drop_off_section_for_points_body_exited"]
 [connection signal="body_entered" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_entered"]
-[connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_exited"]
 [connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Worker" method="_on_Exit_Car_Zone_body_exited"]
+[connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_exited"]
+[connection signal="body_entered" from="Container_Space/Container1/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_entered"]
+[connection signal="body_exited" from="Container_Space/Container1/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_exited"]

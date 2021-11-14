@@ -43,6 +43,8 @@ func get_input():
 		if(object_Ineraction  == true):
 			pick_up_objects()
 		
+		#if we are no longer in the scoring zone we can let go of the boxs location
+		
 		
 	elif active == false:
 		entering_car()
@@ -54,8 +56,8 @@ func get_input():
 func pick_up_objects():
 	# to get the mesh for the box
 	var vehcile = $"."
-	var container1 = get_parent().get_node("Box")
-	var newContainerLoc = vehcile.global_transform.origin
+	var container1 = get_parent().get_node("Container_Space/Container1")
+	
 	
 	
 	if Input.is_action_just_pressed("ui_q") == true && object_Ineraction == true:
@@ -151,11 +153,9 @@ func _on_Drop_off_section_for_points_body_entered(body):
 	if body.name == "Edit_ForkLift":
 		
 		score_Zone = true
-	else:
-		score_Zone = false
-		
-		
+	print("Entered_Score")
 	
-
-
-
+func _on_Drop_off_section_for_points_body_exited(body):
+	if body.name == "Edit_ForkLift":
+		score_Zone = false
+	print("Exit_score")
