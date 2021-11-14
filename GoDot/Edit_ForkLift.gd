@@ -60,15 +60,16 @@ func pick_up_objects():
 	
 	if Input.is_action_just_pressed("ui_q") == true && object_Ineraction == true:
 		# if we know that the key was pressed we can safely say that the container was picked up
-		container_picked_up = true
-		newContainerLoc = newContainerLoc +  2.5 *-vehcile.global_transform.basis.z
+		#container_picked_up = true
+		#newContainerLoc = newContainerLoc +  2.5 *-vehcile.global_transform.basis.z
 		
+		container1.pickable(1)
 		
-		
-		container1.global_transform.origin = newContainerLoc
+		#container1.global_transform.origin = newContainerLoc
 		#vehcile.add_child(container1)
 		#container1.set_physics_process(false)
 		#container1.global_transform.origin = vehcile.global_transform.origin
+		
 		
 		
 		
@@ -83,6 +84,7 @@ func pick_up_objects():
 		PlayerData.score +=1
 		userInterface.updated_interface()
 		
+		container1.pickable(0)
 		
 	
 	
