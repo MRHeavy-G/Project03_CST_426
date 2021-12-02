@@ -17,7 +17,8 @@ func _ready() -> void:
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") :
+		#or (get_parent().get_node("UI_Timer/CountDown/").dsec == 0 and get_parent().get_node("UI_Timer/CountDown/").seconds == 0)
 		Input.set_mouse_mode(0)
 		self.paused = not paused
 		scene_tree.set_input_as_handled()

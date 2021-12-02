@@ -1,20 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/Fonts/Kenney Future.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://User_Interface/UserInterface.gd" type="Script" id=2]
 [ext_resource path="res://User_Interface/PlayB.tscn" type="PackedScene" id=3]
 [ext_resource path="res://User_Interface/QuitB.tscn" type="PackedScene" id=4]
 [ext_resource path="res://User_Interface/RetryButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Fonts/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 24
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 30
 font_data = ExtResource( 1 )
 
@@ -30,11 +34,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -151.729
-margin_top = 8.32445
-margin_right = 14.2705
-margin_bottom = 64.3244
+margin_left = -226.649
+margin_top = 10.7029
+margin_right = -60.6497
+margin_bottom = 66.7028
 rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Score: %s"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -58,7 +63,7 @@ margin_left = -160.109
 margin_top = -189.57
 margin_right = 95.8914
 margin_bottom = -81.5695
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Paused"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,7 +90,7 @@ margin_bottom = 48.0
 margin_top = 52.0
 margin_right = 217.0
 margin_bottom = 100.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Main Menu"
 next_scene_path = "res://Assets/Screens/Intro_PAge.tscn"
 
@@ -93,4 +98,4 @@ next_scene_path = "res://Assets/Screens/Intro_PAge.tscn"
 margin_top = 104.0
 margin_right = 217.0
 margin_bottom = 153.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
