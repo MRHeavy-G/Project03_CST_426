@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scripts/New_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Intro_Sign.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/Box_Interaction.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Container_Box.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/UI_Timer.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Timer.gd" type="Script" id=11]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.62208, 1.7674, 1.55011 )
@@ -303,6 +304,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4851, 0.876966, -20.6524 )
 script = ExtResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233711, 0 )
 shape = SubResource( 25 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Container_Space/Container1"]
@@ -316,12 +318,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0938339, -0.345625, 1.76097 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511494, -0.435501 )
 shape = SubResource( 28 )
 
+[node name="Timer" type="Timer" parent="Container_Space"]
+wait_time = 0.5
+autostart = true
+script = ExtResource( 11 )
+
 [connection signal="body_entered" from="Edit_ForkLift/Player_Interaction" to="Edit_ForkLift" method="_on_Player_Interaction_body_entered"]
 [connection signal="body_exited" from="Edit_ForkLift/Player_Interaction" to="Edit_ForkLift" method="_on_Player_Interaction_body_exited"]
 [connection signal="body_entered" from="Areas_For_Interaction/Drop_off_section_for_points" to="Edit_ForkLift" method="_on_Drop_off_section_for_points_body_entered"]
 [connection signal="body_exited" from="Areas_For_Interaction/Drop_off_section_for_points" to="Edit_ForkLift" method="_on_Drop_off_section_for_points_body_exited"]
 [connection signal="body_entered" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_entered"]
-[connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_exited"]
 [connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Worker" method="_on_Exit_Car_Zone_body_exited"]
+[connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_exited"]
 [connection signal="body_entered" from="Container_Space/Container1/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_entered"]
 [connection signal="body_exited" from="Container_Space/Container1/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_exited"]
+[connection signal="timeout" from="Container_Space/Timer" to="Container_Space/Timer" method="_on_Timer_timeout"]
