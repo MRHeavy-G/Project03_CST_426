@@ -58,6 +58,8 @@ func pick_up_objects():
 	var vehcile = $"."
 	var container1 = get_parent().get_node("Container_Space/Container1")
 	
+	#points for the contianer
+	var containerPoints;
 	
 	
 	if Input.is_action_just_pressed("ui_q") == true && object_Ineraction == true:
@@ -72,26 +74,31 @@ func pick_up_objects():
 		#container1.set_physics_process(false)
 		#container1.global_transform.origin = vehcile.global_transform.origin
 		
-		
-		
-		
-		print("ACtion_Q")
-		
-		
 	if Input.is_action_just_pressed("ui_q") == true && score_Zone == true :
 		var userInterface = get_parent().get_node("UserInterface/UserInterface")
-		print("Point added")
+		#print("Point added")
 		
+		# this function will return the amount of points percontainer
+		containerPoints = color_Score()
 		#this will depend on what container the forklift has
-		PlayerData.score +=1
+		PlayerData.score +=containerPoints
 		userInterface.updated_interface()
 		
 		container1.pickable(0)
+		object_Ineraction = false
 		
-	
-	
+	# finally we need to check and see if th object has been dropped in the zone and it must stay there
+	 
 
-
+func color_Score():
+	# in order to get the proper point for the container "type"
+	var cColor = get_parent().get_node("Container_Space/Container1")
+	if cColor.box_color == "blue":
+		return 3
+	elif cColor.box_color == "yellow":
+		return 5
+	elif cColor.box_color == "brown":
+		return 1
 
 
 #entering and leaving the forklift commands
@@ -133,19 +140,16 @@ func _on_Player_Interaction_body_exited(body):
 	if body.name == "Worker":
 		car_zone = false
 func _on_Exit_Car_Zone_body_entered(body):
+	
 	if body.name == "Edit_ForkLift":
 		body_CE = true
-
-
 func _on_Box1_Pick_Up_Area_body_entered(body):
 	if body.name == "Edit_ForkLift":
 		object_Ineraction = true
-	
-		
-	
-	
+
 func _on_Box1_Pick_Up_Area_body_exited(body):
-	#object_Ineraction = false
+	##if body.name == "Edit_ForkLift":
+	##	object_Ineraction = false
 	pass
 
 func _on_Drop_off_section_for_points_body_entered(body):
@@ -153,9 +157,9 @@ func _on_Drop_off_section_for_points_body_entered(body):
 	if body.name == "Edit_ForkLift":
 		
 		score_Zone = true
-	print("Entered_Score")
+	
 	
 func _on_Drop_off_section_for_points_body_exited(body):
 	if body.name == "Edit_ForkLift":
 		score_Zone = false
-	print("Exit_score")
+	

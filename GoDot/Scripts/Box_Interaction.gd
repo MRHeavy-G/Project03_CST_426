@@ -52,11 +52,14 @@ func make_unique():
 		#yellow = Color( 1, 1, 0, 1 ) --- Yellow color.
 		newmaterial.albedo_color = Color( 1, 1, 0, 1 ) 
 		get_node("MeshInstance").material_override = newmaterial
+		box_color = "yellow"
 	elif my_num == 1:
 		#blue  Color( 0, 0, 1, 1 )
 		newmaterial.albedo_color =  Color( 0, 0, 1, 1 )
 		get_node("MeshInstance").material_override = newmaterial
+		box_color = "blue"
 	elif my_num == 2:
 		#brown = Color( 0.65, 0.16, 0.16, 1 )
 		newmaterial.albedo_color = Color( 0.65, 0.16, 0.16, 1 )
 		get_node("MeshInstance").material_override = newmaterial
+		box_color = "brown"
