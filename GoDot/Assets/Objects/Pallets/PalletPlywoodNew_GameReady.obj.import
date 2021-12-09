@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/PalletPlywoodNew_GameReady.obj-f6d3a66012424a43c9e7a1cc0d3921ed.mesh"
+
+[deps]
+
+files=[ "res://.import/PalletPlywoodNew_GameReady.obj-f6d3a66012424a43c9e7a1cc0d3921ed.mesh" ]
+
+source_file="res://Assets/Objects/Pallets/PalletPlywoodNew_GameReady.obj"
+dest_files=[ "res://.import/PalletPlywoodNew_GameReady.obj-f6d3a66012424a43c9e7a1cc0d3921ed.mesh", "res://.import/PalletPlywoodNew_GameReady.obj-f6d3a66012424a43c9e7a1cc0d3921ed.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
