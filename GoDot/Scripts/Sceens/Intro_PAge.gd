@@ -9,6 +9,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	OS.window_fullscreen = !OS.window_fullscreen
+	Input.set_mouse_mode(0)
 	pass # Replace with function body.
 
 

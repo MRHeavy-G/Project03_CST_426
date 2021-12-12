@@ -12,7 +12,12 @@ func _on_Timer_timeout():
 	
 	#container_out.position = Vector3(1,1,1)
 	if max_boxes_on_floor != 0:
-		newL= newL +  - 20 *container_out.global_transform.basis.z
+		#position the boxes in the right distance for the bins to apper
+		newL= newL +  - 22 *container_out.global_transform.basis.z
+		# random points on the floor
+		var rand_spot = rand_range(0,50)
+		newL = newL + - rand_spot * container_out.global_transform.basis.x
+		
 	
 		container_out.global_transform.origin = newL
 	

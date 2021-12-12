@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Scripts/New_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Intro_Sign.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Assets/Objects/Warehouse.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/Objects/Container.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/Objects/WoodenBox.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Objects/PalletPlywoodNew_GameReady.tscn" type="PackedScene" id=16]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.62208, 1.7674, 1.55011 )
@@ -28,7 +29,7 @@ extents = Vector3( 0.245105, 0.87237, 0.191308 )
 albedo_color = Color( 0.992157, 0, 0, 1 )
 
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 0.865084, 1.0269, 0.21232 )
+extents = Vector3( 1.15284, 1.0269, 0.21232 )
 
 [sub_resource type="CubeMesh" id=6]
 
@@ -87,7 +88,7 @@ extents = Vector3( 11.8497, 1.1727, 7.21174 )
 [sub_resource type="CubeMesh" id=23]
 
 [sub_resource type="SpatialMaterial" id=24]
-albedo_color = Color( 0, 0, 0, 1 )
+albedo_color = Color( 0.152941, 0.0745098, 0.0745098, 1 )
 
 [sub_resource type="BoxShape" id=25]
 extents = Vector3( 0.462331, 0.481588, 0.503387 )
@@ -108,6 +109,18 @@ extents = Vector3( 1.27301, 1.16997, 2.92207 )
 
 [sub_resource type="BoxShape" id=31]
 extents = Vector3( 1.15478, 1.3339, 2.90292 )
+
+[sub_resource type="BoxShape" id=32]
+extents = Vector3( 0.300514, 1.95943, 4.28797 )
+
+[sub_resource type="BoxShape" id=33]
+extents = Vector3( 0.719237, 1.40066, 0.329746 )
+
+[sub_resource type="BoxShape" id=34]
+extents = Vector3( 1, 2.17282, 3.51325 )
+
+[sub_resource type="BoxShape" id=35]
+extents = Vector3( 1.03821, 0.410549, 1 )
 
 [node name="Main_Scene" type="Spatial"]
 script = ExtResource( 5 )
@@ -168,7 +181,7 @@ transform = Transform( 1.90124, 0, 0, 0, 1.97691, 0, 0, 0, 1.15771, -19.4103, 1.
 [node name="Back_Wall" type="StaticBody" parent="Game_Environment/Walls_for _Game"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Game_Environment/Walls_for _Game/Back_Wall"]
-transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 0.5, -0.141175, 5.54209, 25.2955 )
+transform = Transform( 30, 0, 0, 0, 20, 0, 0, 0, 8.85051, -0.141175, 5.54209, 26.9231 )
 shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Game_Environment/Walls_for _Game/Back_Wall"]
@@ -307,13 +320,51 @@ material/0 = SubResource( 24 )
 [node name="Container_Space" type="Node" parent="."]
 
 [node name="Container3" parent="Container_Space" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1053, 0, -21.6377 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1053, 0.211287, -21.6377 )
 
 [node name="Container2" parent="Container_Space" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57667, 0, -22.2508 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57667, 0.129404, -22.2508 )
+
+[node name="Container5" type="RigidBody" parent="Container_Space"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0998, 1.15834, -20.6524 )
+script = ExtResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233711, 0 )
+shape = SubResource( 25 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Container_Space/Container5"]
+mesh = SubResource( 26 )
+material/0 = SubResource( 27 )
+
+[node name="Box5_Pick_Up_Area" type="Area" parent="Container_Space/Container5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0938339, -0.345625, 1.76097 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container5/Box5_Pick_Up_Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511494, -0.435501 )
+shape = SubResource( 28 )
+
+[node name="Container4" type="RigidBody" parent="Container_Space"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.77096, 1.15834, -20.6524 )
+script = ExtResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233711, 0 )
+shape = SubResource( 25 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Container_Space/Container4"]
+mesh = SubResource( 26 )
+material/0 = SubResource( 27 )
+
+[node name="Box4_Pick_Up_Area" type="Area" parent="Container_Space/Container4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0938339, -0.345625, 1.76097 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container4/Box4_Pick_Up_Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511494, -0.435501 )
+shape = SubResource( 28 )
 
 [node name="Container1" type="RigidBody" parent="Container_Space"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4851, 0.876966, -20.6524 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4851, 1.15834, -20.6524 )
 script = ExtResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container1"]
@@ -331,10 +382,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0938339, -0.345625, 1.76097 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511494, -0.435501 )
 shape = SubResource( 28 )
 
-[node name="Timer" type="Timer" parent="Container_Space"]
+[node name="Spawn_Containers" type="Timer" parent="Container_Space"]
 wait_time = 0.5
 autostart = true
 script = ExtResource( 11 )
+
+[node name="Container_Floor" type="StaticBody" parent="Container_Space"]
+transform = Transform( 29.9785, 0, 0, 0, 0.0177966, 0, 0, 0, 8.11751, -1.19951, 0.249335, -25.2514 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Container_Space/Container_Floor"]
+shape = SubResource( 22 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Container_Space/Container_Floor/CollisionShape"]
+mesh = SubResource( 23 )
+material/0 = SubResource( 24 )
 
 [node name="Objects_To_Interact" type="Node" parent="."]
 
@@ -368,19 +429,140 @@ shape = SubResource( 31 )
 [node name="Warehouse" parent="Objects_To_Interact" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03894, 0.234177, 19.27 )
 
+[node name="Left_wall" type="StaticBody" parent="Objects_To_Interact/Warehouse"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/Warehouse/Left_wall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.21488, 2.09299, 0 )
+shape = SubResource( 32 )
+
+[node name="Right_wall" type="StaticBody" parent="Objects_To_Interact/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50888, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/Warehouse/Right_wall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.21488, 2.09299, 0 )
+shape = SubResource( 32 )
+
+[node name="Front_right_wall" type="StaticBody" parent="Objects_To_Interact/Warehouse"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/Warehouse/Front_right_wall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55318, 1.07806, -4.00848 )
+shape = SubResource( 33 )
+
+[node name="Left_front_wall" type="StaticBody" parent="Objects_To_Interact/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15843, 0, -0.184141 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/Warehouse/Left_front_wall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55318, 1.07806, -4.00848 )
+shape = SubResource( 33 )
+
+[node name="Back_right_wall2" type="StaticBody" parent="Objects_To_Interact/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373329, 8.18292 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/Warehouse/Back_right_wall2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55318, 1.07806, -4.00848 )
+shape = SubResource( 33 )
+
+[node name="Back_left_wall3" type="StaticBody" parent="Objects_To_Interact/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14051, 0.373329, 8.18292 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/Warehouse/Back_left_wall3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55318, 1.07806, -4.00848 )
+shape = SubResource( 33 )
+
 [node name="WoodenBox" parent="Objects_To_Interact" instance=ExtResource( 15 )]
-transform = Transform( -0.00129396, 0, 0.588406, 0, 0.490959, 0, -0.609569, 0, -0.0013405, -23.4138, 0.289747, -15.9666 )
+transform = Transform( -0.00129396, 0, 0.588406, 0, 0.490959, 0, -0.609569, 0, -0.0013405, -23.4138, 0.289747, -16.5016 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/WoodenBox"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/WoodenBox/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 6.98492e-10, 0, 1, 0.0053978, 2.35173, -2.45446 )
+shape = SubResource( 34 )
+
+[node name="StaticBody2" type="StaticBody" parent="Objects_To_Interact/WoodenBox"]
+transform = Transform( 0.0299122, 0, -0.964846, 0, 1, 0, 1.0355, 0, 0.0302229, -1.96601, 0, -1.84827 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/WoodenBox/StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 6.98492e-10, 0, 1, 0.0053978, 2.35173, -2.45446 )
+shape = SubResource( 34 )
 
 [node name="WoodenBox2" parent="Objects_To_Interact" instance=ExtResource( 15 )]
-transform = Transform( -0.00337653, 0, -0.588399, 0, 0.490959, 0, 0.609561, 0, -0.00316784, 23.5963, 0.289748, -15.9666 )
+transform = Transform( -0.00337653, 0, -0.588399, 0, 0.490959, 0, 0.609561, 0, -0.00316784, 23.639, 0.289748, -16.5515 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/WoodenBox2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/WoodenBox2/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 6.98492e-10, 0, 1, 0.0053978, 2.35173, -2.45446 )
+shape = SubResource( 34 )
+
+[node name="StaticBody2" type="StaticBody" parent="Objects_To_Interact/WoodenBox2"]
+transform = Transform( 0.0299122, 0, -0.964846, 0, 1, 0, 1.0355, 0, 0.0302229, -2.80162, 0, -1.84347 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/WoodenBox2/StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 6.98492e-10, 0, 1, 0.0053978, 2.35173, -2.45446 )
+shape = SubResource( 34 )
+
+[node name="PalletPlywoodNew_GameReady" parent="Objects_To_Interact" instance=ExtResource( 16 )]
+transform = Transform( 0.0653425, 0, -1.47941, 0, 1.79158, 0, 2.00335, 0, 0.0884842, 15.1235, 0.239527, -6.12512 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/PalletPlywoodNew_GameReady"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/PalletPlywoodNew_GameReady/StaticBody"]
+transform = Transform( 1, 0, -2.23517e-08, 0, 1, 0, 0, 0, 1, 0, 0.469958, 0 )
+shape = SubResource( 35 )
+
+[node name="PalletPlywoodNew_GameReady2" parent="Objects_To_Interact" instance=ExtResource( 16 )]
+transform = Transform( -0.204895, 0, 1.46964, 0, 1.79158, 0, -1.99392, 0, -0.191441, 5.72074, 0.239527, -0.610893 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/PalletPlywoodNew_GameReady2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/PalletPlywoodNew_GameReady2/StaticBody"]
+transform = Transform( 1, 0, -2.23517e-08, 0, 1, 0, 0, 0, 1, 0, 0.469958, 0 )
+shape = SubResource( 35 )
+
+[node name="PalletPlywoodNew_GameReady3" parent="Objects_To_Interact" instance=ExtResource( 16 )]
+transform = Transform( -1.24387, -0.000971821, -1.18668, -0.000682238, 1.79158, -0.000639457, 1.57177, 8.55318e-06, -0.887841, 12.0468, 0.239527, 4.40224 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/PalletPlywoodNew_GameReady3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/PalletPlywoodNew_GameReady3/StaticBody"]
+transform = Transform( 1, 0, -2.23517e-08, 0, 1, 0, 0, 0, 1, 0, 0.469958, 0 )
+shape = SubResource( 35 )
+
+[node name="PalletPlywoodNew_Entrance1" parent="Objects_To_Interact" instance=ExtResource( 16 )]
+transform = Transform( -0.146935, 0, -1.48047, 0, 1.79158, 0, 1.99903, 0, -0.0685013, -12.9476, 0.239527, 7.68654 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/PalletPlywoodNew_Entrance1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/PalletPlywoodNew_Entrance1/StaticBody"]
+transform = Transform( 1, 0, -2.23517e-08, 0, 1, 0, 0, 0, 1, 0, 0.469958, 0 )
+shape = SubResource( 35 )
+
+[node name="PalletPlywoodNew_Entrance2" parent="Objects_To_Interact" instance=ExtResource( 16 )]
+transform = Transform( -0.146935, 0, -1.48047, 0, 1.79158, 0, 1.99903, 0, -0.0685013, -12.6166, 0.253883, 3.45443 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/PalletPlywoodNew_Entrance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/PalletPlywoodNew_Entrance2/StaticBody"]
+transform = Transform( 1, 0, -2.23517e-08, 0, 1, 0, 0, 0, 1, 0, 0.469958, 0 )
+shape = SubResource( 35 )
+
+[node name="PalletPlywoodNew_Entrance3" parent="Objects_To_Interact" instance=ExtResource( 16 )]
+transform = Transform( -0.146935, 0, -1.48047, 0, 1.79158, 0, 1.99903, 0, -0.0685013, -12.3885, 0.239527, -0.69618 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects_To_Interact/PalletPlywoodNew_Entrance3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects_To_Interact/PalletPlywoodNew_Entrance3/StaticBody"]
+transform = Transform( 1, 0, -2.23517e-08, 0, 1, 0, 0, 0, 1, 0, 0.469958, 0 )
+shape = SubResource( 35 )
 
 [connection signal="body_entered" from="Edit_ForkLift/Player_Interaction" to="Edit_ForkLift" method="_on_Player_Interaction_body_entered"]
 [connection signal="body_exited" from="Edit_ForkLift/Player_Interaction" to="Edit_ForkLift" method="_on_Player_Interaction_body_exited"]
 [connection signal="body_entered" from="Areas_For_Interaction/Drop_off_section_for_points" to="Edit_ForkLift" method="_on_Drop_off_section_for_points_body_entered"]
 [connection signal="body_exited" from="Areas_For_Interaction/Drop_off_section_for_points" to="Edit_ForkLift" method="_on_Drop_off_section_for_points_body_exited"]
 [connection signal="body_entered" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_entered"]
-[connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Worker" method="_on_Exit_Car_Zone_body_exited"]
 [connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Edit_ForkLift" method="_on_Exit_Car_Zone_body_exited"]
+[connection signal="body_exited" from="Areas_For_Interaction/Exit_Car_Zone" to="Worker" method="_on_Exit_Car_Zone_body_exited"]
+[connection signal="body_entered" from="Container_Space/Container4/Box4_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box4_Pick_Up_Area_body_entered"]
 [connection signal="body_entered" from="Container_Space/Container1/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_entered"]
 [connection signal="body_exited" from="Container_Space/Container1/Box1_Pick_Up_Area" to="Edit_ForkLift" method="_on_Box1_Pick_Up_Area_body_exited"]
-[connection signal="timeout" from="Container_Space/Timer" to="Container_Space/Timer" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Container_Space/Spawn_Containers" to="Container_Space/Spawn_Containers" method="_on_Timer_timeout"]
