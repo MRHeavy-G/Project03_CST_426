@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://User_Interface/RetryButton.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Fonts/Kenney Future.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 21
+font_data = ExtResource( 2 )
+
+[node name="RetryButton" type="Button"]
+margin_right = 197.0
+margin_bottom = 37.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Return"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="." to="." method="_on_PlayB_button_up"]
